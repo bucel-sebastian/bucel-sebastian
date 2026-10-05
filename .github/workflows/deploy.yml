@@ -39,12 +39,13 @@ jobs:
         run: pnpm install
 
       - name: Setup Pages
+        id: setup_pages
         uses: actions/configure-pages@v5
 
       - name: Build
         run: pnpm build
         env:
-          GITHUB_PAGES: true
+          PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
